@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>USSD DOCUMENTATION</title>
+<!-- stylesheets -->
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/mdb.min.css">
+<link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
+<!-- <link rel="stylesheet" href="style.css"> -->
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+html, body{
+    font-family: 'Raleway', sans-serif;
+    box-sizing: border-box;
+    min-height: 100vh;
+    margin: 0 10px 0 10px;
+    letter-spacing: .6px;
+    font-weight: 500;
+    font-size: 1.05rem;
+}
+
+.heading h5{
+    font-size: 1.7rem;
+   color: orange;
+}
+
+.prerequisites ul{
+    border-left: 2px solid;
+    border-radius: 12px;
+}
+.jumbotron{
+    border-radius: 50px;
+    box-shadow: 2px 3px 2px rgba(16, 29, 44, .7);
+}
+img{
+    border-radius: 6px;
+    box-shadow: 1.5px 1px 2px orange;
+}
+
+</style>
+</head>
+<body>
+<br><br><br>
+<div class="container">
+    <div class="heading">
+        <h5 class="font-weight-bold text-center">SETTING UP A USSD APPLICATION USING AFRICA'S TALKING APIs</h5><br><br>        
+    </div>
+
+
+    <div>
+        <h5 class="text-primary font-weight-bold">Prerequisites</h5><br>
+ 
+        <div class="prerequisites">
+            <ul class="border-warning text-muted">
+                <li>A stable internet connection.</li><br>
+
+                <li>Go through the USSD documentation provided by Africa's Talking to have an idea as to how it works <a href="https://build.at-labs.io/docs/ussd%2Foverview" target="_blank">here</a>.</li><br>
+
+                <li>An Africa's Talking account is required. In case you do not have one, create it by following 
+                    <a href="https://build.at-labs.io/docs/getting_started%2Fintroduction" target="_blank">this
+                    </a>link.</li> <br>
+                <li>A installation of PHP 7 or higher.</li><br>
+                <li>Ngrok- This is a tunneling application that will expose our USSD application from the local server to the internet. Download <a href="https://ngrok.com/download" target="_blank">here</a> and set up an account.</li>
+            </ul>
+        </div>
+    </div><br><br>
+
+    <div class="introduction">
+        <h5 class="font-weight-bold text-primary">Introduction</h5><br>
+
+        <p class="text-muted">The aim of this documentation is to guide you on how to test a USSD application using Africa's Talking sandbox by dialling the code you will create on the launch simulator.
+        </p>
+        <p class="font-weight-bold text-muted">Note:</span>
+            <span class="font-weight-bold text-danger">Interaction with your application will take place only on the </span>
+            <span class="font-weight-bold text-secondary">SIMULATOR</span>
+            <span class="font-weight-bold text-danger">and not your</span>
+             <span class="font-weight-bold text-secondary">PERSONAL MOBILE PHONE</span>.
+            
+        </p>
+    </div><br><br>
+
+    <div class="step-by-step-guide">
+        <h5 class="font-weight-bold text-primary">Step-by-step guide</h5><br>
+
+        <div class="jumbotron text-muted">
+            <ul>
+                <li>On your terminal, navigate to the location you want your project hosted and create a folder titled <span class="font-weight-bold text-secondary">ussd</span>.</li><br>
+
+                <li>Create a file inside the folder labelled <span class="font-weight-bold text-secondary">ussd.php
+                </span>.</li><br>
+
+                <li>Inside the file, place the USSD sample code provided by Africa's Talking. Get it from <a href="https://build.at-labs.io/docs/ussd%2Foverview" target="_blank">here</a>.
+                    
+                    <br><br>
+                    
+                    <p><span class="font-weight-bold text-muted">Tip:</span>
+
+                    <span class="font-weight-bold text-danger">Click on the text labelled
+                        <label class="font-weight-bold text-secondary">code samples</label> to reveal the code
+                    </span>.</p>
+
+                </li><br>
+
+                <li>Now, log onto your Africa's Talking account and click on the area marked in red as shown. This will lead you to the dashboard where we will create our channel from.
+
+                    <br><br><br>
+
+                    <div class="row">
+                        <div class="col-3"></div>
+
+                        <div class="col-6">
+                            <img src="img/sandbox.jpg" class="img-fluid">
+                        </div>
+
+                        <div class="col-3"></div>
+
+                    </div>
+                </li><br><br>
+
+                <li>Navigate to the USSD dropdown menu and click on 
+                    <span class="font-weight-bold text-secondary">create channel</span>, e.g.
+                    <span class="font-weight-bold text-secondary">*384*7899#</span>.
+                    
+                    <br><br><br>
+
+                    <div class="row">
+
+                        <div class="col-md-5">
+                            <img src="img/channel.jpg" class="img-fluid">
+
+                        </div>
+
+                        <div class="col-md-1"></div>
+
+                        <div class="col-md-5">
+                            <img src="img/createChannel.png" class="img-fluid">
+                        </div>
+
+                    </div>
+                </li><br><br>
+
+                <p>Let us create a callback URL using the following steps. The URL is supposed to expose our app that is on our local server to the web so that we can POST data to it. This is where Ngrok comes in. But first...</p><br>
+
+                <li>Set the php folder you've installed onto the <span class="font-weight-bold text-secondary">PATH system environment variable</span> depending on where it's installed on your system.
+                    <br><br><br>
+
+                    <div class="row">
+
+                        <div class="col-md-5">
+                            <img src="img/2.jpg" class="img-fluid">
+
+                        </div>
+
+                        <div class="col-md-1"></div>
+
+                        <div class="col-md-5">
+                            <img src="img/1.jpg" class="img-fluid">
+                            
+                        </div>
+
+                    </div><br><br>
+
+                    <div class="row">
+
+                        <div class="col-md-3"></div>
+
+                        <div class="col-md-6">
+                            <img src="img/phpVersion.png" class="img-fluid">
+                        </div>
+
+                        <div class="col-md-3"></div>
+
+                    </div>
+
+                </li><br><br>
+
+                <p>
+                    <span class="font-weight-bold">Tip: </span>
+                    <span class="font-weight-bold text-danger">To confirm if the addition has been successful, check for the php version installed by doing</span>
+                    <span class="font-weight-bold text-secondary"> php -v</span>
+                    <span class="font-weight-bold text-danger">on your terminal</span>.
+                </p><br>
+
+                <li>Assuming that you are on your root folder, on your terminal do 
+                    <span class="font-weight-bold text-secondary">php -S localhost:8050 ussd.php </span>. 
+                    This means that we are exposing our app that is located on our local server to port 8050. You should be able to see the result below:
+
+                    <br><br><br>
+
+                    <div class="row">
+
+                        <div class="col-md-3"></div>
+
+                        <div class="col-md-6">
+                            <img src="img/port8050.png" class="img-fluid">
+                        </div>
+
+                        <div class="col-md-3"></div>
+
+                    </div>
+                </li><br>
+
+                <li>Next, on your Ngrok command line, do 
+                    <span class="font-weight-bold text-secondary">ngrok http 8050</span>.
+
+                    You should be able to see the ouput as shown: <br><br><br>
+
+                    <div class="row">
+
+                        <div class="col-md-3"></div>
+
+                        <div class="col-md-6">
+
+                            <img src="img/ngrok.png" class="img-fluid">
+
+                        </div>
+
+                        <div class="col-md-3"></div>
+
+                    </div>
+
+
+                    <br><br>
+
+                    <p class="font-weight-bold text-muted">Note:
+
+                        <span class="font-weight-bold text-danger">Africa's Talking APIs are accessible on the web through </span>
+                        <span class="font-weight-bold text-secondary">HTTP/HTTPS</span>.
+
+                    </p>
+                </li><br>
+
+                <li>Copy and paste the 
+                    <span class="font-weight-bold text-secondary">http</span> link provided onto the input area branded
+                    <span class="font-weight-bold text-secondary">callback URL</span> on your Africa's Talking account. This will serve as your callback URL. You can use the 
+                    <span class="font-weight-bold text-secondary">https</span> link as well.
+                </li><br>
+
+                <li>Next, type 
+                    <span class="font-weight-bold text-secondary">localhost:4040</span>
+                    on your browser. Click on the link that coincides with your callback URL.
+
+                    <br><br><br>
+
+                    <div class="row">
+
+                        <div class="col-md-5">
+                            <img src="img/url_1.jpg" class="img-fluid">
+                        </div>
+
+                        <div class="col-md-1"></div>
+
+                        <div class="col-md-5">
+
+                            <img src="img/url_2.jpg" class="img-fluid">
+                        </div>
+
+                    </div><br><br><br>
+
+                    <p>The outcome below is what should be displayed:</p><br><br>
+
+                    <div class="row">
+
+                        <div class="col-md-3"></div>
+
+                        <div class="col-md-6">
+                            <img src="img/output.png" class="img-fluid">
+                        </div>
+
+                        <div class="col-md-3"></div>
+
+                    </div>
+
+                </li><br><br>
+
+                <div class="badge badge-pill bg-warning p-2">
+                    <h6>Almost done :)</h6>
+
+                </div><br><br><br>
+
+                <li>Let's test our app! But before that...let's inspect what is on display on localhost:4040...
+                    <br><br><br>
+
+                    <div class="row">
+
+                        <div class="col-md-3"></div>
+
+                        <div class="col-md-6">
+
+                            <img src="img/inspect.png" class="img-fluid">
+
+                        </div>
+
+                        <div class="col-md-3"></div>
+
+                    </div><br><br><br>
+
+                    <p class="font-weight-bold text-muted">Tip:
+                        <span class="font-weight-bold text-danger">localhost:4040 allows us to inspect HTTP traffic running over our tunnel (the callback URL) and provides a response in the form of a status code that is dependent whether or not our API has successfully executed a client request. 200(OK) means that the request has been accomplished</span>.  
+                    </p><br>
+
+                    <p>Click on the lauch simulator menu item. Key in your phone number and click
+                        <span class="font-weight-bold text-secondary">launch</span>.
+                    </p><br><br><br>
+
+                    <div class="row">
+
+                        <div class="col-md-3"></div>
+
+                        <div class="col-md-6">
+                            <img src="img/launch.png" class="img-fluid">
+                        </div>
+
+                        <div class="col-md-3"></div>
+
+                    </div><br><br><br>
+
+                    <p>This is the outcome that should be displayed:</p><br><br>
+
+                    <div class="row">
+
+                        <div class="col-md-3"></div>
+
+                        <div class="col-md-6">
+                            <img src="img/testing_1.png" class="img-fluid">
+                        </div>
+
+                        <div class="col-md-3"></div>
+
+                    </div>
+
+                </li><br><br>
+
+                <div class="badge badge-pill float-right bg-success p-2 mr-3">
+
+                    <h6>It works! :)</h6>
+
+                </div><br><br><br>
+
+                <li>Play around with the app to see if it returns the desired outcomes.
+                    <br><br><br>
+
+                    <div class="row">
+                        
+                        <div class="col-md-5">
+                            <img src="img/testing_2.png" class="img-fluid">
+                        </div>
+
+                        <div class="col-md-1"></div>
+                            
+
+                        <div class="col-md-5">
+                            <img src="img/testing_3.png" class="img-fluid">
+                        </div>
+
+                    </div>
+                </li>
+
+            </ul><br><br>
+
+            <p>That's it! I hope you learnt something new today! </p>
+        </div>
+    </div>
+    
+    
+</div><br><br><br>
+
+<hr>
+
+<div class="footer">
+
+    <p class="font-italic text-muted text-center">&copy; Maureen Njeri 2020</p>
+
+</div>
+
+</body>
+</html>

@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>USSD DOCUMENTATION</title>
 <!-- stylesheets -->
+<link rel="shortcut icon" href="img/mobile-icon.png" type="image/x-icon">
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/css/mdb.min.css">
 <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
@@ -56,15 +57,17 @@ img{
  
         <div class="prerequisites">
             <ul class="border-warning text-muted">
-                <li>A stable internet connection.</li><br>
+                <p>A stable internet connection.</p>
 
-                <li>Go through the USSD documentation provided by Africa's Talking to have an idea as to how it works <a href="https://build.at-labs.io/docs/ussd%2Foverview" target="_blank">here</a>.</li><br>
+                <p>Go through the USSD documentation provided by Africa's Talking to have an idea as to how it works <a href="https://build.at-labs.io/docs/ussd%2Foverview" target="_blank">here</a>.</p>
 
-                <li>An Africa's Talking account is required. In case you do not have one, create it by following 
+                <p>An Africa's Talking account is required. In case you do not have one, create it by following 
                     <a href="https://build.at-labs.io/docs/getting_started%2Fintroduction" target="_blank">this
-                    </a>link.</li> <br>
-                <li>A installation of PHP 7 or higher.</li><br>
-                <li>Ngrok- This is a tunneling application that will expose our USSD application from the local server to the internet. Download <a href="https://ngrok.com/download" target="_blank">here</a> and set up an account.</li>
+                    </a>link.</p>
+
+                <p>A installation of PHP 7 or higher.</p>
+
+                <p>Ngrok- This is a tunneling application that will expose our USSD application from the local server to the internet. Download <a href="https://ngrok.com/download" target="_blank">here</a> and set up an account.</p>
             </ul>
         </div>
     </div><br><br>
@@ -197,7 +200,7 @@ img{
 
                 <li>Assuming that you are on your root folder, on your terminal do 
                     <span class="font-weight-bold text-secondary">php -S localhost:8050 ussd.php </span>. 
-                    This means that we are exposing our app that is located on our local server to port 8050. You should be able to see the result below:
+                    This means that we are starting a PHP server on localhost and listening for connections on port 8050. You should be able to see the result below:
 
                     <br><br><br>
 
@@ -215,7 +218,7 @@ img{
 
                 </li><br><br>
 
-                <li>Next, on your Ngrok command line, do 
+                <li>Next, on your Ngrok command line, start ngrok and bind it to http port 8050 by typing
                     <span class="font-weight-bold text-secondary">ngrok http 8050</span>.
 
                     You should be able to see the ouput as shown: <br><br><br>
@@ -277,6 +280,12 @@ img{
 
                     </div><br><br><br>
 
+                    <p class="font-weight-bold text-muted">Note:
+
+                        <span class="font-weight-bold text-danger">If you're using https, select the https link provided on localhost:4040</span>.
+
+                    </p><br>
+
                     <p>The outcome below is what should be displayed:</p><br><br>
 
                     <div class="row">
@@ -316,7 +325,9 @@ img{
                     </div><br><br><br>
 
                     <p class="font-weight-bold text-muted">Tip:
-                        <span class="font-weight-bold text-danger">localhost:4040 allows us to inspect HTTP traffic running over our tunnel (the callback URL) and provides a response in the form of a status code that is dependent whether or not our API has successfully executed a client request. 200(OK) means that the request has been accomplished</span>.  
+                        <span class="font-weight-bold text-danger">localhost:4040 allows us to inspect incoming connections through the ngrok tunnel and the corresponding response from our server application. A response of 
+                            <span class="font-weight-bold text-secondary">200(OK)</span> 
+                        means that a client request has been accomplished</span>.  
                     </p><br>
 
                     <p>Click on the lauch simulator menu item. Key in your phone number and click
